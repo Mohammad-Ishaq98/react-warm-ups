@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from './Button';
 
 class Clock extends React.Component {
   constructor(props){
@@ -18,7 +19,14 @@ class Clock extends React.Component {
     clearInterval(this.clockTimer)
   }
  
-  handleClicked(){
+  // handleClicked(){
+  //   console.log("handleClicked",this);
+  //   this.setState({
+  //     locale : 'en-US'
+  //   })
+  // }
+  handleClicked = () => {
+    console.log("handleClicked",this);
     this.setState({
       locale : 'en-US'
     })
@@ -31,6 +39,7 @@ class Clock extends React.Component {
     })
   }
   render(){
+    console.log('clock component renderd');
     // destructure
     const {locale} = this.state;
     return (
@@ -38,10 +47,11 @@ class Clock extends React.Component {
         <h1 className='heading'>
           <span className="text">
             {/* {this.state.date.toLocaleTimeString(this.props.locale)} */}
-            {this.state.date.toLocaleTimeString(locale)}
+             {this.state.date.toLocaleTimeString(locale)} 
           </span>
         </h1>
-        <button onClick={this.handleClicked}>Click here</button>
+        <Button change={this.handleClicked} locale='en-US'  //locale passed as parametere to function & pass only the function referrence 'this.handleClicked'
+         ></Button>
       </div>
     );
   }
